@@ -15,8 +15,8 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
 
-				//if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $_POST["ingPassword"]){
-				if (password_verify($valor1,$respuesta["password"])){
+				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $_POST["ingPassword"]){
+				//if (password_verify($valor1,$respuesta["password"])){
 
 					if($respuesta["estado"] == 1){
 						
@@ -102,10 +102,10 @@ class ControladorUsuarios{
 					}
 				}
 				$tabla = "usuarios";
-				$pass_cifrado = password_hash($POST["nuevoPassword"], PASSWORD_DEFAULT);
+				//$pass_cifrado = password_hash($POST["nuevoPassword"], PASSWORD_DEFAULT);
 				$datos = array("nombre" => $_POST["nuevoNombre"],
 					           "usuario" => $_POST["nuevoUsuario"],
-					           "password" => $pass_cifrado,
+					           "password" =>$_POST["nuevoPassword"],
 					           "perfil" => $_POST["nuevoPerfil"],
 					           "foto"=>$ruta);
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
